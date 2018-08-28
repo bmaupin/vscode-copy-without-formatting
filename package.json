@@ -2,7 +2,7 @@
     "name": "copy-without-formatting",
     "displayName": "Copy without formatting",
     "description": "Copy text without formatting (syntax highlighting, font, etc)",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "publisher": "bmaupin",
     "engines": {
         "vscode": "^1.26.0"
@@ -11,16 +11,34 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello"
+        "onCommand:extension.copyWithoutFormatting"
     ],
     "main": "./out/extension",
     "contributes": {
         "commands": [
             {
-                "command": "extension.sayHello",
-                "title": "Hello World"
+                "command": "extension.copyWithoutFormatting",
+                "title": "Copy without formatting",
+                "when": "editorHasSelection"
             }
-        ]
+        ],
+        "keybindings": [
+            {
+                "command": "extension.copyWithoutFormatting",
+                "key": "ctrl+shift+c",
+                "mac": "shift+cmd+c",
+                "when": "editorHasSelection"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "command": "extension.copyWithoutFormatting",
+                    "group": "9_cutcopypaste@2",
+                    "when": "editorHasSelection"
+                }
+            ]
+        }
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",
@@ -35,5 +53,12 @@
         "tslint": "^5.8.0",
         "@types/node": "^7.0.43",
         "@types/mocha": "^2.2.42"
+    },
+    "dependencies": {
+        "clipboardy": "^1.2.3"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/bmaupin/vscode-copy-without-formatting"
     }
 }
