@@ -9,10 +9,16 @@ export function activate(context: vscode.ExtensionContext) {
         const document = editor.document;
         if (!document) return;
 
-        const selectedText = document.getText(editor.selection);
-        if (!selectedText) return;
+        const selectedTexts = editor.selections.map((selection) => document.getText(selection));
+        if (!selectedTexts) return;
 
-        await vscode.env.clipboard.writeText(selectedText);
+        // I don't see any simple way in the API to get the current EOL...
+        let eol = '\n';
+        if (document.eol === vscode.EndOfLine.CRLF) {
+            eol = '\r\n';
+        }
+
+        await vscode.env.clipboard.writeText(selectedTexts.join(eol));
     });
 
     context.subscriptions.push(disposable);
