@@ -54,9 +54,7 @@
         "typescript": "^2.6.1",
         "vscode": "^1.1.36"
     },
-    "dependencies": {
-        "clipboardy": "^1.2.3"
-    },
+    "dependencies": {},
     "repository": {
         "type": "git",
         "url": "https://github.com/bmaupin/vscode-copy-without-formatting"

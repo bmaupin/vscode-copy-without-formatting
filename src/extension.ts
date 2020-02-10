@@ -2,9 +2,7 @@
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
-    const clipboardy = require('clipboardy');
-
-    let disposable = vscode.commands.registerCommand('extension.copyWithoutFormatting', () => {
+    let disposable = vscode.commands.registerCommand('extension.copyWithoutFormatting', async () => {
         const editor = vscode.window.activeTextEditor;
         if (!editor) return;
 
@@ -14,7 +12,7 @@ export function activate(context: vscode.ExtensionContext) {
         const selectedText = document.getText(editor.selection);
         if (!selectedText) return;
 
-        clipboardy.writeSync(selectedText);
+        await vscode.env.clipboard.writeText(selectedText);
     });
 
     context.subscriptions.push(disposable);
