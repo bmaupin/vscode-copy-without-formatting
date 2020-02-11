@@ -1,5 +1,19 @@
 Visual Studio Code extension to copy text without formatting
 
+## ⚠️ You may not need this extension
+
+After this extension was first published, Visual Studio Code added a new setting:
+
+```json
+  // Controls whether syntax highlighting should be copied into the clipboard.
+  "editor.copyWithSyntaxHighlighting": true,
+```
+
+(https://code.visualstudio.com/docs/getstarted/settings#_default-settings)
+
+If you set that to `false`, then the _Copy_ command will copy without formatting and you can use the
+_Copy With Syntax Highlighting_ command when needed.
+
 ## Features
 
 - Adds the ability to copy text without formatting (syntax highlighting, font, etc)
