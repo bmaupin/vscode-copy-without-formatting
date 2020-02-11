@@ -2,7 +2,7 @@
     "name": "copy-without-formatting",
     "displayName": "Copy without formatting",
     "description": "Copy text without formatting (syntax highlighting, font, etc)",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "publisher": "bmaupin",
     "engines": {
         "vscode": "^1.26.0"
