@@ -9,16 +9,16 @@ export function activate(context: vscode.ExtensionContext) {
         const document = editor.document;
         if (!document) return;
 
-        const selectedTexts = editor.selections.map((selection) => document.getText(selection));
-        if (!selectedTexts) return;
+        if (editor.selections.length === 1) {
+            const selectedText = document.getText(editor.selection);
+            if (!selectedText) return;
 
-        // I don't see any simple way in the API to get the current EOL...
-        let eol = '\n';
-        if (document.eol === vscode.EndOfLine.CRLF) {
-            eol = '\r\n';
+            await vscode.env.clipboard.writeText(selectedText);
+        } else {
+            // When there are multiple selections (due to multiple cursors), vscode doesn't seem to copy the formatting.
+            // So just cheat and use the default built-in copy functionality.
+            vscode.commands.executeCommand('editor.action.clipboardCopyAction');
         }
-
-        await vscode.env.clipboard.writeText(selectedTexts.join(eol));
     });
 
     context.subscriptions.push(disposable);
